@@ -1,122 +1,145 @@
-# 🚑 Enhanced BATCS for Ambulances 🚑
-### **AI-Powered Traffic Management for Emergency Response**
+# 🚑 Enhanced BATCS for Ambulances 🚑  
+**Real-Time Traffic Management for Emergency Response**  
 
-Welcome to the **Enhanced BATCS (Basic Adaptive Traffic Control System)** project, a cutting-edge solution designed to optimize ambulance routes using advanced AI and real-time traffic insights. Built with Python and integrated with powerful tools like Google Routes API, this project tackles traffic challenges to ensure ambulances reach their destinations faster.
-
----
-
-## 🛠️ Project Overview
-The Enhanced BATCS system leverages machine learning, computer vision, and real-time APIs to address key limitations in traditional traffic control systems. This prototype empowers emergency vehicles by predicting congestion, detecting accidents, and recommending optimal routes for commuters—freeing up critical pathways for ambulances.
+Welcome to the Enhanced BATCS project, a cutting-edge traffic management system designed to optimize ambulance routes using AI and real-time data. Built with Python, this project integrates accident detection, congestion prediction, and route optimization into a sleek Tkinter-based GUI, ensuring emergency vehicles reach their destinations faster.
 
 ---
 
-## ✨ Key Features
+## 🛠️ Project Overview  
+Enhanced BATCS leverages machine learning, deep learning, and the Google Routes API to tackle three critical traffic challenges: accident detection, future congestion prediction, and commuter route recommendations. With a user-friendly interface, this system empowers traffic authorities and commuters alike to make informed decisions in real-time.
+
+---
+
+## ✨ Key Features  
 - **Accident Detection**  
-  - **What:** Real-time accident detection from video feeds.  
-  - **How:** Uses a ResNet50 + LSTM deep learning model to analyze video sequences, outputting accident probabilities and annotated videos.  
-  - **Why:** Alerts authorities instantly, enabling rapid response and route prioritization.
+  - **What:** Identifies accidents from video feeds instantly.  
+  - **How:** Uses a ResNet50 + LSTM deep learning model to analyze video sequences.  
+  - **Output:** Detects accidents with confidence scores and saves annotated videos.  
 
 - **Future Congestion Prediction**  
-  - **What:** Predicts traffic congestion before it happens.  
-  - **How:** Employs a LightGBM model with inputs like historical traffic data, weather, and events, delivering congestion rates in percentage.  
-  - **Why:** Preemptively adjusts traffic signals to clear paths for ambulances.
+  - **What:** Forecasts traffic congestion to preemptively adjust signals.  
+  - **How:** Employs a LightGBM model with historical data, weather, and road events.  
+  - **Output:** Predicts congestion levels as a percentage (e.g., 45.3%).  
 
 - **Traffic Recommendations for Commuters**  
-  - **What:** Provides personalized, traffic-aware route suggestions.  
-  - **How:** Integrates Google Routes API to compute optimal routes based on live traffic, outputting distance, time, and traffic status.  
-  - **Why:** Diverts commuter traffic, reducing congestion around emergency routes.
+  - **What:** Suggests optimal routes to reduce congestion around emergency paths.  
+  - **How:** Integrates Google Routes API for traffic-aware routing.  
+  - **Output:** Provides distance, travel time, and traffic status for up to three routes.  
 
-- **Frontend Dashboard:** A sleek, 3D-animated interface built with Three.js for an immersive user experience.  
-- **Backend Integration:** Flask-powered API connects all components seamlessly.
-
----
-
-## 🚀 Getting Started
-
-### 1. Prerequisites
-- Python 3.x installed on your system.
-- Dependencies: `torch`, `joblib`, `opencv-python`, `requests`, `flask`, `numpy`, `pydantic`, `three.js`.
-- A valid Google Routes API key.
-- A network connection for API calls.
-
-### 2. Setting Up
-#### Backend
-- Clone the repository:
-  ```bash
-  git clone <repository-url>
-  cd enhanced-batcs
-  ```
-- Install dependencies:
-  ```bash
-  pip install -r requirements.txt
-  ```
-- Run the server:
-  ```bash
-  python server.py
-  ```
-
-#### Frontend
-- Open `enhanced_batcs_frontend/index.html` in a browser.
-- Ensure the server is running at `http://localhost:5000`.
-
-### 3. Using the System
-- **Accident Detection:** Upload a video to detect accidents and view results in real-time.  
-- **Congestion Prediction:** Input traffic parameters to get congestion forecasts.  
-- **Route Recommendations:** Enter source and destination coordinates for optimal routes.  
-
-### 4. Viewing Results
-- Outputs are displayed on the dashboard and optionally saved (e.g., annotated accident videos).
+- **Interactive GUI**  
+  - Built with Tkinter, offering a tabbed interface for seamless interaction with all features.  
+  - Real-time results displayed with progress updates and error handling.  
 
 ---
 
-## 💾 File Structure
-```bash
-enhanced-batcs/
-├── server.py                   # Flask API server
-├── enhanced_batcs_frontend/    # Frontend files
-│   ├── index.html             # Main HTML
-│   ├── style.css              # Styling
-│   └── script.js              # 3D animations & API calls
-├── future_prediction/         # Congestion prediction
-│   └── models/
-│       └── lgbm_model.pkl     # LightGBM model
-└── accident_detection/        # Accident detection
-    └── accident_detection_model.pt  # PyTorch model
-```
+## 🚀 Getting Started  
+
+### 1. Prerequisites  
+- Python 3.x installed.  
+- Dependencies: `torch`, `joblib`, `pydantic`, `tkinter`, `requests`, `numpy`, `opencv-python` (see `future_prediction/requirements.txt`).  
+- A valid Google Routes API key.  
+- Network access for route recommendations.  
+
+### 2. Setting Up  
+Clone the repository and navigate to the project directory:  
+```bash  
+git clone <repository-url>  
+cd Enhanced-BATCS  
+```  
+
+- **Install Dependencies:**  
+  ```bash  
+  pip install -r future_prediction/requirements.txt  
+  ```  
+
+- **Run the GUI:**  
+  ```bash  
+  python interface.py  
+  ```  
+
+### 3. Using the System  
+- **Traffic Prediction:** Enter parameters (e.g., Traffic Density, Hour) and click "Predict Traffic."  
+- **Accident Detection:** Upload a video, specify the model path, and click "Detect Accidents."  
+- **Optimal Route:** Input source/destination coordinates and click "Find Optimal Route."  
+
+### 4. Viewing Results  
+- Results appear in the GUI’s text boxes with detailed outputs (e.g., congestion levels, accident timestamps, route details).  
+- Annotated videos from accident detection are saved to your specified output path.  
 
 ---
 
-## 📝 Code Explanation
-- **server.py:** Hosts the Flask API, integrating all ML models and API calls.  
-- **Accident Detection (Solution 4):** Processes video frames with a deep learning model to detect accidents.  
-- **Future Congestion Prediction (Solution 1):** Uses LightGBM to predict congestion based on manual inputs.  
-- **Traffic Recommendations (Solution 3):** Queries Google Routes API for real-time route optimization.  
-- **Frontend:** A Three.js-powered 3D dashboard with dynamic panels for user interaction.
+## 💾 File Structure  
+```bash  
+Enhanced-BATCS/  
+│  
+├── interface.py               # Main GUI application  
+├── optimal_route.py           # Google Routes API integration for route recommendations  
+├── server.py                  # Flask server (optional frontend)  
+│  
+├── accident_detection/  
+│   ├── main.py                # Accident detection logic  
+│   ├── accident_detection_model.pt  # Pre-trained ResNet50 + LSTM model  
+│   └── [video files]          # Sample/test videos (e.g., poori.mp4)  
+│  
+├── enhanced_batcs_frontend/  
+│   ├── index.html             # Optional web frontend  
+│   ├── script.js              # Frontend JavaScript  
+│   ├── style.css              # Frontend CSS  
+│   └── three.min.js           # Three.js for 3D effects  
+│  
+├── future_prediction/  
+│   ├── api/main.py            # Congestion prediction API  
+│   ├── models/lgbm_model.pkl  # Pre-trained LightGBM model  
+│   ├── data/                  # Processed traffic data  
+│   └── scripts/               # Preprocessing and training scripts  
+```  
 
 ---
 
-## 🌐 System Configuration
-- **Model Paths:** Ensure model files (`lgbm_model.pkl`, `accident_detection_model.pt`) are in the correct directories.  
-- **API Key:** Replace `YOUR_GOOGLE_API_KEY` in `server.py` with your Google Routes API key.  
-- **Network:** Runs locally on `localhost:5000`—modify for network deployment if needed.
+## 📝 Code Explanation  
+- **interface.py:**  
+  - Launches a Tkinter GUI with three tabs for each feature.  
+  - Dynamically imports and runs prediction/detection/routing logic.  
+  - Handles user inputs and displays results with real-time feedback.  
+
+- **accident_detection/main.py:**  
+  - Processes video frames using a pre-trained ResNet50 + LSTM model.  
+  - Outputs accident detection results and annotated videos.  
+
+- **future_prediction/api/main.py:**  
+  - Validates inputs with Pydantic and predicts congestion using LightGBM.  
+  - Returns congestion levels based on traffic, weather, and event data.  
+
+- **optimal_route.py:**  
+  - Queries the Google Routes API for real-time route options.  
+  - Scores routes based on distance and delay, recommending the best one.  
 
 ---
 
-## 🛠️ How It Works
-1. **Accident Detection:** Upload a video, and the system processes it frame-by-frame to identify accidents.  
-2. **Congestion Prediction:** Enter traffic data, and receive a congestion forecast to adjust signals.  
-3. **Route Recommendations:** Input coordinates, and get the best routes to ease traffic flow.  
-4. **Real-Time Dashboard:** Interact with all features via a futuristic 3D interface.
+## 🌐 Configuration Tips  
+- **Model Paths:** Ensure `accident_detection_model.pt` and `lgbm_model.pkl` are in their respective directories or update paths in the code.  
+- **API Key:** Replace the placeholder in `optimal_route.py` with your Google Routes API key.  
+- **GPU Support:** Accident detection auto-detects CUDA if available; otherwise, it defaults to CPU.  
 
 ---
 
-## 🎯 Project Intent
-This project demonstrates the power of AI in transforming traffic management for emergency services. It showcases skills in machine learning, computer vision, API integration, and frontend design—perfect for academic projects or professional portfolios.
+## 🛠️ How It Works  
+- **Flow:**  
+  1. Launch `interface.py` to access the GUI.  
+  2. Input data for predictions, upload videos for detection, or specify coordinates for routes.  
+  3. Results are processed in real-time and displayed in the GUI.  
+
+- **Data Handling:**  
+  - Predictions use validated inputs; detection saves video outputs; routes are fetched live from Google.  
 
 ---
 
-## 🔧 Customization
-Enhance the project with:  
-- **GUI Expansion:** Add interactive maps or live video feeds.  
-- **Vehicle Prioritization:** Integrate RFID or CV for emergency vehicle detection (Solution 2 placeholder).  
-- **Scalability:** Deploy on a cloud server for real-world use.
+## 🎯 Project Intent  
+This project demonstrates advanced AI applications in traffic management, focusing on emergency response optimization. It’s ideal for showcasing skills in machine learning, deep learning, API integration, and GUI development—perfect for academic projects or professional portfolios.
+
+---
+
+## 🔧 Customization Ideas  
+- **Enhanced GUI:** Add visualizations (e.g., maps for routes, graphs for congestion).  
+- **Real-Time Feeds:** Integrate live traffic camera streams for accident detection.  
+- **Mobile App:** Port the system to a mobile-friendly interface using Flask or Kivy.  
